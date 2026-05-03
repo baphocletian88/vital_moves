@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brief Estratégico — Estudio de Baile NL 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  /* ── RESET & BASE ─────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #000000;
+    --yellow:  #FFD600;
+    --white:   #FFFFFF;
+    --gray:    #888888;
+    --gray-light: #AAAAAA;
+    --card-bg: #0E0E0E;
+    --card-border: #1E1E1E;
+    --section-max: 1100px;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAVIGATION ───────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 52px;
+  }
+
+  .nav-brand {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    color: var(--yellow);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.1rem;
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar { display: none; }
+
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--yellow);
+    background: rgba(255,214,0,0.08);
+  }
+
+  /* ── LAYOUT ───────────────────────────────────────────── */
+  main { padding-top: 52px; }
+
+  section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 2rem;
+    border-bottom: 1px solid #111;
+    position: relative;
+  }
+
+  .container {
+    max-width: var(--section-max);
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* ── SECTION LABELS ───────────────────────────────────── */
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--yellow);
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    margin-bottom: 1.4rem;
+  }
+
+  /* ── HEADINGS ─────────────────────────────────────────── */
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--white);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: 0.03em;
+    color: var(--yellow);
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
+    color: var(--yellow);
+    margin-bottom: 0.6rem;
+  }
+
+  /* ── DIVIDER ──────────────────────────────────────────── */
+  .divider {
+    height: 2px;
+    background: var(--yellow);
+    margin-bottom: 2.5rem;
+    width: 60px;
+  }
+
+  /* ── CARDS ────────────────────────────────────────────── */
+  .card-grid {
+    display: grid;
+    gap: 1px;
+    background: #111;
+  }
+
+  .card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .card {
+    background: var(--card-bg);
+    padding: 1.8rem;
+  }
+
+  .card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .card p, .card li {
+    font-size: 0.9rem;
+    color: var(--gray-light);
+    line-height: 1.65;
+  }
+
+  .card ul { padding-left: 1.1rem; }
+  .card ul li { margin-bottom: 0.35rem; }
+
+  /* ── HIGHLIGHT STRIP ──────────────────────────────────── */
+  .highlight-strip {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 1.5rem 2rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 2rem 0;
+  }
+
+  /* ── STAT BLOCKS ──────────────────────────────────────── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: #111;
+    margin-bottom: 2rem;
+  }
+
+  .stat-block {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    color: var(--yellow);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── TABLE ────────────────────────────────────────────── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-top: 1rem;
+  }
+
+  .data-table th {
+    background: var(--yellow);
+    color: var(--black);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    padding: 0.7rem 1rem;
+    text-align: left;
+  }
+
+  .data-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #1a1a1a;
+    color: var(--gray-light);
+    vertical-align: top;
+  }
+
+  .data-table tr:hover td { background: #0d0d0d; }
+
+  .data-table .highlight-cell {
+    color: var(--yellow);
+    font-weight: 600;
+  }
+
+  /* ── PRICE CARDS ──────────────────────────────────────── */
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: #111;
+    margin-top: 1.5rem;
+  }
+
+  .price-card {
+    background: var(--card-bg);
+    padding: 1.8rem;
+    position: relative;
+  }
+
+  .price-card.featured {
+    background: #111800;
+    border: 1px solid var(--yellow);
+  }
+
+  .price-badge {
+    font-size: 0.65rem;
+    background: var(--yellow);
+    color: var(--black);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+  }
+
+  .price-amount {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--yellow);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+
+  .price-period {
+    font-size: 0.78rem;
+    color: var(--gray);
+    margin-bottom: 1rem;
+  }
+
+  .price-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 0.9rem;
+  }
+
+  .price-features {
+    list-style: none;
+    font-size: 0.83rem;
+    color: var(--gray-light);
+  }
+
+  .price-features li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #191919;
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .price-features li::before {
+    content: "→";
+    color: var(--yellow);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  /* ── POSITIONING MATRIX ───────────────────────────────── */
+  .matrix-row {
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr;
+    gap: 1px;
+    background: #111;
+    margin-top: 0.5rem;
+  }
+
+  .matrix-row.header > div {
+    background: var(--yellow);
+    color: var(--black);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.6rem 1rem;
+  }
+
+  .matrix-row > div {
+    background: var(--card-bg);
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+    color: var(--gray-light);
+  }
+
+  .matrix-row .row-label {
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.82rem;
+  }
+
+  .matrix-row .our-col {
+    color: var(--yellow);
+    font-weight: 500;
+  }
+
+  /* ── DECISION BOXES ───────────────────────────────────── */
+  .decision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: #111;
+    margin-top: 1.5rem;
+  }
+
+  .decision-card {
+    background: var(--card-bg);
+    padding: 1.8rem;
+    border-left: 3px solid var(--yellow);
+  }
+
+  .decision-number {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: #222;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .decision-question {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+
+  .decision-options {
+    font-size: 0.85rem;
+    color: var(--gray-light);
+    line-height: 1.6;
+  }
+
+  /* ── TAG LIST ─────────────────────────────────────────── */
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+  }
+
+  .tag {
+    border: 1px solid #2a2a2a;
+    color: var(--gray-light);
+    font-size: 0.78rem;
+    padding: 0.3rem 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .tag.accent {
+    border-color: var(--yellow);
+    color: var(--yellow);
+  }
+
+  /* ── TIMELINE ─────────────────────────────────────────── */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #111;
+    margin-top: 1.5rem;
+  }
+
+  .timeline-phase {
+    background: var(--card-bg);
+    padding: 1.8rem;
+  }
+
+  .phase-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 0.3rem;
+  }
+
+  .phase-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .phase-items {
+    list-style: none;
+    font-size: 0.85rem;
+    color: var(--gray-light);
+  }
+
+  .phase-items li {
+    padding: 0.35rem 0;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .phase-items li::before { content: "▸"; color: var(--yellow); }
+
+  /* ── COVER ────────────────────────────────────────────── */
+  #cover {
+    min-height: 100vh;
+    justify-content: flex-end;
+    padding-bottom: 6rem;
+    border-left: 4px solid var(--yellow);
+    padding-left: 3rem;
+  }
+
+  .cover-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 1rem;
+  }
+
+  .cover-subtitle {
+    font-size: 1rem;
+    color: var(--gray);
+    margin-top: 2rem;
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  .cover-meta {
+    margin-top: 3rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-size: 0.75rem;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+  }
+
+  .meta-item strong { color: var(--white); display: block; margin-bottom: 0.1rem; }
+
+  /* ── TWO-COL ──────────────────────────────────────────── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .two-col-wide {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* ── BODY TEXT ────────────────────────────────────────── */
+  p.body { font-size: 0.95rem; color: var(--gray-light); line-height: 1.75; margin-bottom: 1rem; }
+
+  ul.bullet-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5rem;
+  }
+
+  ul.bullet-list li {
+    font-size: 0.9rem;
+    color: var(--gray-light);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #111;
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  ul.bullet-list li::before { content: "→"; color: var(--yellow); flex-shrink: 0; }
+
+  /* ── ACCENT QUOTE ─────────────────────────────────────── */
+  .quote-block {
+    border-left: 3px solid var(--yellow);
+    padding: 1.2rem 1.5rem;
+    background: #080808;
+    margin: 2rem 0;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ───────────────────────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid #111;
+    font-size: 0.75rem;
+    color: #333;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .card-grid.cols-3 { grid-template-columns: 1fr; }
+    .card-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+    .two-col, .two-col-wide { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 1fr; }
+    .matrix-row { grid-template-columns: 1fr; }
+    .matrix-row.header { display: none; }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 0; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 4rem 1.2rem; }
+    .card-grid.cols-2 { grid-template-columns: 1fr; }
+    .card-grid.cols-4 { grid-template-columns: 1fr; }
+    #cover { padding-left: 1.5rem; border-left-width: 3px; }
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2rem; }
+    .price-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ─────────────────────────────────────────────────────── -->
+<nav>
+  <span class="nav-brand">Estudio de Baile NL</span>
+  <ul class="nav-links">
+    <li><a href="#contexto">Contexto</a></li>
+    <li><a href="#mercado">Mercado</a></li>
+    <li><a href="#oportunidad">Oportunidad</a></li>
+    <li><a href="#propuesta">Propuesta</a></li>
+    <li><a href="#diferenciadores">Diferenciadores</a></li>
+    <li><a href="#modelo">Modelo</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#posicionamiento">Posicionamiento</a></li>
+    <li><a href="#marketing">Marketing</a></li>
+    <li><a href="#recomendaciones">Recomendaciones</a></li>
+    <li><a href="#decisiones">Decisiones</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- ── COVER ──────────────────────────────────────────────────────────── -->
+<section id="cover">
+  <div class="container">
+    <p class="cover-eyebrow">Brief Estratégico · 2026</p>
+    <h1>Estudio<br>de Baile<br><span style="color:var(--yellow)">Nuevo León</span></h1>
+    <p class="cover-subtitle">
+      Análisis de mercado, propuesta de valor y estrategia de lanzamiento para un estudio de baile fitness con instrucción certificada en Nuevo León.
+    </p>
+    <div class="cover-meta">
+      <div class="meta-item"><strong>Versión</strong> 3.0 · Final</div>
+      <div class="meta-item"><strong>Año</strong> 2026</div>
+      <div class="meta-item"><strong>Uso</strong> Revisión interna de equipo</div>
+      <div class="meta-item"><strong>Estado</strong> Confidencial</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 01 · CONTEXTO ──────────────────────────────────────────────────── -->
+<section id="contexto">
+  <div class="container">
+    <span class="section-label">01 · Contexto del Proyecto</span>
+    <h2>Punto de Partida</h2>
+    <div class="divider"></div>
+
+    <div class="card-grid cols-3">
+      <div class="card">
+        <span class="card-icon">🏢</span>
+        <h3>El Espacio</h3>
+        <ul>
+          <li>Espacio físico ya disponible sin costo de renta inicial</li>
+          <li>Ventaja financiera estructural desde el día 1</li>
+          <li>Punto de equilibrio significativamente más bajo que competidores</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="card-icon">🤝</span>
+        <h3>Alianza CLIAN Studio</h3>
+        <ul>
+          <li>Estudio de K-pop, commercial dance y urbano en Monterrey</li>
+          <li>Bailarines de alto rendimiento con comunidad activa</li>
+          <li>Aliado estratégico para co-marketing y crossover de alumnos</li>
+          <li>Acceso inmediato a audiencia calificada</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <h3>El Objetivo</h3>
+        <ul>
+          <li>Lanzar estudio de baile fitness en 2026</li>
+          <li>Posicionarse como opción premium-accesible en NL</li>
+          <li>Alcanzar rentabilidad en el mes 2–3</li>
+          <li>Instrucción con certificaciones nacionales e internacionales</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight-strip" style="margin-top:2rem;">
+      Sin costo de renta + alianza CLIAN = las dos ventajas competitivas más difíciles de replicar por cualquier nuevo competidor.
+    </div>
+  </div>
+</section>
+
+<!-- ── 02 · MERCADO ────────────────────────────────────────────────────── -->
+<section id="mercado">
+  <div class="container">
+    <span class="section-label">02 · Insights del Mercado</span>
+    <h2>El Landscape de Baile en NL</h2>
+    <div class="divider"></div>
+
+    <div class="stats-row">
+      <div class="stat-block">
+        <span class="stat-number">$399</span>
+        <span class="stat-label">Entrada más baja competencia (mensual)</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-number">$2,450</span>
+        <span class="stat-label">Techo de mercado boutique (mensual)</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-number">4+</span>
+        <span class="stat-label">Sedes Brisa Latina en área metro</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-number">101K</span>
+        <span class="stat-label">Seguidores Latina Tribe en Instagram</span>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Competidor</th>
+          <th>Enfoque</th>
+          <th>NSE</th>
+          <th>Debilidad explotable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="highlight-cell">Smart Fit / Sports World</td>
+          <td>Zumba incluida en membresía masiva</td>
+          <td>B / C</td>
+          <td>Cero calidad de instrucción, sin comunidad, instructores sin certificación</td>
+        </tr>
+        <tr>
+          <td class="highlight-cell">Brisa Latina</td>
+          <td>Salsa, bachata, cumbia (técnica social)</td>
+          <td>B / B-</td>
+          <td>No fitness, no urbano trending, técnica tradicional únicamente</td>
+        </tr>
+        <tr>
+          <td class="highlight-cell">Instructores independientes</td>
+          <td>Clases en casa o parque, precio bajo</td>
+          <td>B / C</td>
+          <td>Sin espacio, sin comunidad, sin certificación verificable</td>
+        </tr>
+        <tr>
+          <td class="highlight-cell">Clases gubernamentales</td>
+          <td>Baile fitness gratuito CARE / parques</td>
+          <td>C</td>
+          <td>Sin calidad, sin metodología, sin horarios confiables</td>
+        </tr>
+        <tr>
+          <td class="highlight-cell">We Dance / academias técnicas</td>
+          <td>Baile urbano orientado a competencia</td>
+          <td>B</td>
+          <td>No casual, no orientado a resultados físicos, no accesible</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="quote-block" style="margin-top:2rem;">
+      Latina Tribe no es competencia directa — es la prueba de que el mercado de baile fitness con identidad de comunidad funciona en Monterrey. Su existencia valida la demanda.
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 · OPORTUNIDAD ────────────────────────────────────────────────── -->
+<section id="oportunidad">
+  <div class="container">
+    <span class="section-label">03 · Oportunidad Detectada</span>
+    <h2>El Espacio Que Nadie Ocupa</h2>
+    <div class="divider"></div>
+
+    <div class="two-col-wide">
+      <div>
+        <p class="body">El mercado de baile fitness en Nuevo León tiene mucho ruido pero poca profundidad. Lo que falta no es otra opción — es una opción en la que se pueda <strong style="color:var(--white)">confiar</strong>.</p>
+        <div class="quote-block">
+          El espacio boutique con instrucción certificada, mixto y orientado a resultados físicos está <span style="color:var(--yellow)">desocupado en tu zona.</span>
+        </div>
+        <p class="body">Ningún competidor actual combina los tres elementos simultáneamente:</p>
+      </div>
+      <div>
+        <div class="card-grid cols-1" style="gap:1px; background:#111;">
+          <div class="card" style="border-left:3px solid var(--yellow);">
+            <h3>① Certificación verificable</h3>
+            <p>El mercado masivo usa instructores sin formación. El alumno no puede distinguir calidad antes de pagar. Tu certificación elimina esa incertidumbre.</p>
+          </div>
+          <div class="card" style="border-left:3px solid var(--yellow);">
+            <h3>② Inclusión real (mixto)</h3>
+            <p>Los competidores boutique son exclusivamente femeninos. El mercado masculino de baile fitness está completamente desatendido.</p>
+          </div>
+          <div class="card" style="border-left:3px solid var(--yellow);">
+            <h3>③ Multi-estilo con metodología</h3>
+            <p>Zumba, baile funcional y reggaetón bajo un solo techo, con estructura pedagógica real — no improvisación.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 04 · PROPUESTA DE VALOR ─────────────────────────────────────────── -->
+<section id="propuesta">
+  <div class="container">
+    <span class="section-label">04 · Propuesta de Valor</span>
+    <h2>Por Qué Elegirnos</h2>
+    <div class="divider"></div>
+
+    <div class="highlight-strip" style="font-size:1.2rem; padding:2rem;">
+      "Instrucción de nivel profesional. Resultados reales. Para cualquiera que quiera bailar."
+    </div>
+
+    <div style="margin-top:2rem;" class="two-col">
+      <div>
+        <h3>Para el alumno casual</h3>
+        <ul class="bullet-list">
+          <li>Aprende con quien realmente sabe enseñar</li>
+          <li>Resultados físicos visibles en 30 días</li>
+          <li>Ambiente sin juicio, mixto e incluyente</li>
+          <li>Música actual: reggaetón, urbano, trending</li>
+          <li>Comunidad real, no solo una clase</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Para el mercado</h3>
+        <ul class="bullet-list">
+          <li>Precio accesible con calidad boutique</li>
+          <li>Certificaciones verificables = confianza antes de pagar</li>
+          <li>Múltiples formatos: grupo, privado, paquetes</li>
+          <li>Respaldo de CLIAN: credibilidad técnica del ecosistema</li>
+          <li>Únicos con instructoras con formación en academias profesionales</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tag-list" style="margin-top:2rem;">
+      <span class="tag accent">Baile funcional</span>
+      <span class="tag accent">Zumba</span>
+      <span class="tag accent">Reggaetón fitness</span>
+      <span class="tag">Instructoras certificadas</span>
+      <span class="tag">Grupos mixtos</span>
+      <span class="tag">Clases privadas</span>
+      <span class="tag">Resultados físicos</span>
+      <span class="tag">Comunidad activa</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── 05 · DIFERENCIADORES ───────────────────────────────────────────── -->
+<section id="diferenciadores">
+  <div class="container">
+    <span class="section-label">05 · Diferenciadores Clave</span>
+    <h2>El Talento Es la Ventaja</h2>
+    <div class="divider"></div>
+
+    <div class="two-col-wide">
+      <div>
+        <p class="body">En el mercado de Monterrey, cualquiera puede abrir una "clase de baile fitness". Lo que nadie más tiene es instrucción con trayectoria profesional verificable.</p>
+        <p class="body">Las certificaciones nacionales e internacionales funcionan como <strong style="color:var(--white)">proxy de calidad</strong> — igual que un médico especialista cobra más que uno general. El cliente lo acepta porque reduce su riesgo percibido.</p>
+        <div class="quote-block">
+          Un instructor certificado internacionalmente justifica precios 20–30% más altos que el mercado genérico, sin necesitar explicación extensa.
+        </div>
+      </div>
+      <div>
+        <div class="card-grid cols-1" style="gap:1px; background:#111;">
+          <div class="card">
+            <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+              <tr style="border-bottom:1px solid #222;">
+                <td style="padding:0.7rem 0.5rem; color:var(--gray); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em;">Lo que tienes</td>
+                <td style="padding:0.7rem 0.5rem; color:var(--yellow); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em;">Lo que percibe el cliente</td>
+              </tr>
+              <tr style="border-bottom:1px solid #181818;">
+                <td style="padding:0.7rem 0.5rem; color:var(--gray-light);">Certificación internacional</td>
+                <td style="padding:0.7rem 0.5rem; color:var(--white);">"Es legítimo, no improvisado"</td>
+              </tr>
+              <tr style="border-bottom:1px solid #181818;">
+                <td style="padding:0.7rem 0.5rem; color:var(--gray-light);">Formación en academia profesional</td>
+                <td style="padding:0.7rem 0.5rem; color:var(--white);">"Aprenderé bien desde el inicio"</td>
+              </tr>
+              <tr style="border-bottom:1px solid #181818;">
+                <td style="padding:0.7rem 0.5rem; color:var(--gray-light);">Trayectoria profesional</td>
+                <td style="padding:0.7rem 0.5rem; color:var(--white);">"La instructora sabe lo que hace"</td>
+              </tr>
+              <tr>
+                <td style="padding:0.7rem 0.5rem; color:var(--gray-light);">Metodología estructurada</td>
+                <td style="padding:0.7rem 0.5rem; color:var(--white);">"Voy a ver resultados, no solo sudar"</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="card-grid cols-2" style="gap:1px; background:#111; margin-top:1px;">
+          <div class="card" style="text-align:center;">
+            <span style="font-family:var(--font-display); font-size:2.2rem; color:var(--yellow);">NAC</span>
+            <p style="font-size:0.75rem; color:var(--gray); margin-top:0.3rem; text-transform:uppercase; letter-spacing:0.08em;">Certificación nacional</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <span style="font-family:var(--font-display); font-size:2.2rem; color:var(--yellow);">INT'L</span>
+            <p style="font-size:0.75rem; color:var(--gray); margin-top:0.3rem; text-transform:uppercase; letter-spacing:0.08em;">Certificación internacional</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 06 · MODELO DE NEGOCIO ─────────────────────────────────────────── -->
+<section id="modelo">
+  <div class="container">
+    <span class="section-label">06 · Modelo de Negocio</span>
+    <h2>Cómo Opera y Crece</h2>
+    <div class="divider"></div>
+
+    <div class="card-grid cols-4" style="margin-bottom:2rem;">
+      <div class="card" style="text-align:center;">
+        <span style="font-family:var(--font-display); font-size:3rem; color:var(--yellow); display:block;">$0</span>
+        <p style="font-size:0.8rem; color:var(--gray); margin-top:0.3rem;">Renta mensual<br>(espacio propio)</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span style="font-family:var(--font-display); font-size:3rem; color:var(--yellow); display:block;">35</span>
+        <p style="font-size:0.8rem; color:var(--gray); margin-top:0.3rem;">Membresías para<br>punto de equilibrio</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span style="font-family:var(--font-display); font-size:3rem; color:var(--yellow); display:block;">38%</span>
+        <p style="font-size:0.8rem; color:var(--gray); margin-top:0.3rem;">Margen estimado<br>en mes 6</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span style="font-family:var(--font-display); font-size:3rem; color:var(--yellow); display:block;">Mes 2</span>
+        <p style="font-size:0.8rem; color:var(--gray); margin-top:0.3rem;">Meta de utilidad<br>neta positiva</p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h3>Fuentes de Ingreso</h3>
+        <ul class="bullet-list">
+          <li>Membresías mensuales (ingreso recurrente principal)</li>
+          <li>Clases individuales drop-in</li>
+          <li>Clases privadas 1:1</li>
+          <li>Paquetes prepagados (5 y 10 clases)</li>
+          <li>Renta del espacio por horas ($400–$600/hr)</li>
+          <li>Masterclases y eventos especiales</li>
+          <li>Corporativo (grupos empresariales)</li>
+          <li>Clases online en vivo (expansión sin costo de espacio)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Proyección Mes 6 (escenario realista)</h3>
+        <table class="data-table" style="margin-top:0.5rem;">
+          <thead>
+            <tr><th>Concepto</th><th>MXN/mes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>60 membresías básicas × $699</td><td class="highlight-cell">$41,940</td></tr>
+            <tr><td>30 membresías populares × $999</td><td class="highlight-cell">$29,970</td></tr>
+            <tr><td>15 membresías ilimitadas × $1,499</td><td class="highlight-cell">$22,485</td></tr>
+            <tr><td>Clases sueltas + paquetes</td><td class="highlight-cell">$12,000</td></tr>
+            <tr><td><strong style="color:var(--white)">Total ingresos est.</strong></td><td><strong style="color:var(--yellow)">~$106,395</strong></td></tr>
+            <tr><td>Egresos operativos</td><td style="color:#888;">~$47,500</td></tr>
+            <tr><td><strong style="color:var(--white)">Utilidad bruta est.</strong></td><td><strong style="color:var(--yellow)">~$58,895</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 07 · PRECIOS ────────────────────────────────────────────────────── -->
+<section id="precios">
+  <div class="container">
+    <span class="section-label">07 · Estructura de Precios</span>
+    <h2>Pricing 2026</h2>
+    <div class="divider"></div>
+
+    <p class="body" style="margin-bottom:1.5rem;">Posicionados 10–20% por encima del gym masivo y 15–25% por debajo del boutique premium. La certificación justifica el precio sin explicación adicional.</p>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <span class="price-badge">Drop-in</span>
+        <p class="price-name">Clase Individual</p>
+        <div class="price-amount">$180</div>
+        <p class="price-period">por clase grupal (50–60 min)</p>
+        <ul class="price-features">
+          <li>Clase de prueba: $99</li>
+          <li>Clase intensiva (70 min): $220</li>
+          <li>Clase privada 1:1: $450–$600/hr</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <span class="price-badge">Entrada</span>
+        <p class="price-name">Plan Básico</p>
+        <div class="price-amount">$699</div>
+        <p class="price-period">por mes</p>
+        <ul class="price-features">
+          <li>8 clases al mes</li>
+          <li>2 días por semana</li>
+          <li>1 estilo de baile</li>
+          <li>Conversión rápida, precio de entrada</li>
+        </ul>
+      </div>
+
+      <div class="price-card featured">
+        <span class="price-badge">⭐ Más popular</span>
+        <p class="price-name">Plan Popular</p>
+        <div class="price-amount">$999</div>
+        <p class="price-period">por mes</p>
+        <ul class="price-features">
+          <li>12 clases al mes</li>
+          <li>3 días por semana</li>
+          <li>Todos los estilos incluidos</li>
+          <li>Mayor volumen — tu bestseller</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <span class="price-badge">Comprometido</span>
+        <p class="price-name">Plan Ilimitado</p>
+        <div class="price-amount">$1,499</div>
+        <p class="price-period">por mes</p>
+        <ul class="price-features">
+          <li>Clases ilimitadas</li>
+          <li>Todos los formatos y estilos</li>
+          <li>Justificado por calidad certificada</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <span class="price-badge">Diferencial</span>
+        <p class="price-name">Plan Pareja / Duo</p>
+        <div class="price-amount">$1,699</div>
+        <p class="price-period">por mes (2 personas)</p>
+        <ul class="price-features">
+          <li>Ilimitado para 2</li>
+          <li>Único en el mercado local</li>
+          <li>Abre segmento masculino</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <span class="price-badge">B2B</span>
+        <p class="price-name">Plan Corporativo</p>
+        <div class="price-amount">$599</div>
+        <p class="price-period">por persona/mes (10+)</p>
+        <ul class="price-features">
+          <li>Ilimitado grupal</li>
+          <li>Canal via CLIAN o empresas zona</li>
+          <li>Potencial clase en empresa</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card-grid cols-2" style="margin-top:1px; gap:1px; background:#111;">
+      <div class="card">
+        <h3>Paquetes sin membresía</h3>
+        <ul class="bullet-list">
+          <li>5 clases: $699 (vigencia 60 días)</li>
+          <li>10 clases: $1,199 (vigencia 90 días)</li>
+          <li>Clase de prueba: $99 (no gratis — lo gratis no se valora)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Palancas de lanzamiento</h3>
+        <ul class="bullet-list">
+          <li>Inscripción $0 durante los primeros 3 meses</li>
+          <li>30% de descuento "Fundadoras" (primeras 30 personas)</li>
+          <li>20% de descuento para comunidad CLIAN</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 08 · POSICIONAMIENTO ───────────────────────────────────────────── -->
+<section id="posicionamiento">
+  <div class="container">
+    <span class="section-label">08 · Estrategia de Posicionamiento</span>
+    <h2>Cómo Nos Ven y Por Qué</h2>
+    <div class="divider"></div>
+
+    <div class="two-col-wide">
+      <div>
+        <h3>Mensaje principal</h3>
+        <div class="quote-block" style="font-size:1.1rem;">
+          "No es una clase cualquiera.<br>Es baile enseñado por quien sabe de verdad."
+        </div>
+        <h3 style="margin-top:1.5rem;">Jerarquía del mensaje</h3>
+        <div class="card-grid cols-1" style="gap:1px; background:#111; margin-top:0.5rem;">
+          <div class="card" style="padding:1rem 1.4rem;">
+            <span style="color:var(--yellow); font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;">Nivel 1 · Credibilidad</span>
+            <p style="margin-top:0.3rem; font-size:0.9rem;">Instructoras con certificaciones nacionales e internacionales y formación en academias profesionales</p>
+          </div>
+          <div class="card" style="padding:1rem 1.4rem;">
+            <span style="color:var(--yellow); font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;">Nivel 2 · Experiencia</span>
+            <p style="margin-top:0.3rem; font-size:0.9rem;">Clases estructuradas, metodología real, no improvisación</p>
+          </div>
+          <div class="card" style="padding:1rem 1.4rem;">
+            <span style="color:var(--yellow); font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;">Nivel 3 · Resultado</span>
+            <p style="margin-top:0.3rem; font-size:0.9rem;">Tu cuerpo cambia porque quien te enseña sabe cómo hacerlo</p>
+          </div>
+          <div class="card" style="padding:1rem 1.4rem;">
+            <span style="color:var(--yellow); font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;">Nivel 4 · Comunidad</span>
+            <p style="margin-top:0.3rem; font-size:0.9rem;">Un espacio donde bailar es también conectar — respaldado por CLIAN</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3>Matriz de diferenciación</h3>
+        <div class="matrix-row header">
+          <div>Factor</div>
+          <div>Competencia actual</div>
+          <div>Nuestro estudio</div>
+        </div>
+        <div class="matrix-row">
+          <div class="row-label">Renta</div>
+          <div>Paga local en plaza o gimnasio</div>
+          <div class="our-col">$0 — ventaja estructural</div>
+        </div>
+        <div class="matrix-row">
+          <div class="row-label">Comunidad</div>
+          <div>Construida desde cero</div>
+          <div class="our-col">Acceso inmediato vía CLIAN</div>
+        </div>
+        <div class="matrix-row">
+          <div class="row-label">Género</div>
+          <div>Solo mujeres (boutiques)</div>
+          <div class="our-col">Mixto — mercado más amplio</div>
+        </div>
+        <div class="matrix-row">
+          <div class="row-label">Precio</div>
+          <div>Premium o muy bajo sin calidad</div>
+          <div class="our-col">Competitivo con valor real</div>
+        </div>
+        <div class="matrix-row">
+          <div class="row-label">Certificación</div>
+          <div>Sin verificación en mercado masivo</div>
+          <div class="our-col">Nacional + internacional verificable</div>
+        </div>
+        <div class="matrix-row">
+          <div class="row-label">Estilos</div>
+          <div>Uno o dos (especialización estrecha)</div>
+          <div class="our-col">Zumba + funcional + reggaetón</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 09 · MARKETING ──────────────────────────────────────────────────── -->
+<section id="marketing">
+  <div class="container">
+    <span class="section-label">09 · Estrategia de Marketing</span>
+    <h2>Adquisición y Crecimiento</h2>
+    <div class="divider"></div>
+
+    <div class="stats-row" style="margin-bottom:2rem;">
+      <div class="stat-block">
+        <span class="stat-number">$8K</span>
+        <span class="stat-label">Meta Ads / mes (lanzamiento)</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-number">$5K</span>
+        <span class="stat-label">TikTok Ads / mes</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-number">$3K</span>
+        <span class="stat-label">Google Ads local / mes</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-number">$4K</span>
+        <span class="stat-label">Micro-influencers / mes</span>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-phase">
+        <p class="phase-label">Semanas 1–3</p>
+        <p class="phase-title">Pre-lanzamiento</p>
+        <ul class="phase-items">
+          <li>Abrir Instagram + TikTok con contenido "making of"</li>
+          <li>Pre-venta membresías Fundadoras (30% off, primeras 30)</li>
+          <li>Invitación exclusiva a comunidad CLIAN (20% descuento)</li>
+          <li>Configurar Google Business Profile con certificaciones visibles</li>
+          <li>Presentación de instructoras con sus credenciales (video 30–45 seg)</li>
+        </ul>
+      </div>
+      <div class="timeline-phase">
+        <p class="phase-label">Semanas 4–6</p>
+        <p class="phase-title">Lanzamiento</p>
+        <ul class="phase-items">
+          <li>Evento apertura: clase gratuita 90 min con fotógrafo</li>
+          <li>Invitar 5–8 micro-influencers locales (3K–15K seguidores)</li>
+          <li>Meta Ads activos: mujeres y hombres 22–42, radio 10 km</li>
+          <li>TikTok: video de apertura + "behind the scenes" de preparación de clase</li>
+          <li>Copy: "Instructoras certificadas internacionalmente. Primera clase $99."</li>
+        </ul>
+      </div>
+      <div class="timeline-phase">
+        <p class="phase-label">Mes 2–3+</p>
+        <p class="phase-title">Retención y Escala</p>
+        <ul class="phase-items">
+          <li>Referidos: "Trae a alguien y ambos reciben 1 clase gratis"</li>
+          <li>Reto 21 días: membresía especial $1,499 con check-ins diarios</li>
+          <li>WhatsApp Business: grupo de alumnos activos</li>
+          <li>Renta del espacio por horas ($400–$600/hr) cuando no hay clases</li>
+          <li>Masterclases con instructores de CLIAN como invitados</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card-grid cols-2" style="margin-top:1px; gap:1px; background:#111;">
+      <div class="card">
+        <h3>Contenido que activa el diferenciador</h3>
+        <ul class="bullet-list">
+          <li>Video de presentación de instructoras: certificación, academia, experiencia</li>
+          <li>"Behind the scenes" de cómo se prepara una clase (demuestra el trabajo invisible)</li>
+          <li>Antes/después de alumnos reales (resultado = prueba del talento)</li>
+          <li>Testimonios en video que mencionen específicamente la calidad de instrucción</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Copy que convierte</h3>
+        <ul class="bullet-list">
+          <li>❌ "Clases de baile divertidas en Monterrey"</li>
+          <li>✅ "Instructoras certificadas internacionalmente. Primera clase $99."</li>
+          <li>❌ "Aprende a bailar con nosotros"</li>
+          <li>✅ "No improvisamos. Cada clase tiene metodología, estructura y propósito."</li>
+          <li>Primer mensaje de WhatsApp siempre menciona la certificación</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 10 · RECOMENDACIONES ───────────────────────────────────────────── -->
+<section id="recomendaciones">
+  <div class="container">
+    <span class="section-label">10 · Recomendaciones</span>
+    <h2>Prioridades de Ejecución</h2>
+    <div class="divider"></div>
+
+    <div class="card-grid cols-2" style="gap:1px; background:#111; margin-bottom:1px;">
+      <div class="card" style="border-top:3px solid var(--yellow);">
+        <h3>🔑 Inmediato (Semana 1)</h3>
+        <ul class="bullet-list">
+          <li>Abrir Instagram + TikTok y empezar a publicar ya — el algoritmo necesita tiempo para calentarse</li>
+          <li>Configurar Google Business Profile con categoría "Dance studio" y credenciales de instructoras</li>
+          <li>Contactar comunidad de CLIAN para pre-venta exclusiva</li>
+          <li>Definir nombre y visual del estudio (base de toda la comunicación)</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:3px solid var(--yellow);">
+        <h3>📲 Digital (Mes 1)</h3>
+        <ul class="bullet-list">
+          <li>Invertir el 60% del budget de marketing en Meta Ads (mayor conversión directa)</li>
+          <li>TikTok: mínimo 3 videos semanales — autenticidad > producción</li>
+          <li>Instalar software de agendamiento (Mindbody o Acuity, desde $500/mes)</li>
+          <li>Crear sistema de referidos antes del lanzamiento, no después</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card-grid cols-2" style="gap:1px; background:#111;">
+      <div class="card" style="border-top:3px solid #333;">
+        <h3>💡 Palancas de Rentabilidad</h3>
+        <ul class="bullet-list">
+          <li>Renta de espacio por horas: ingreso pasivo desde el mes 1</li>
+          <li>Clases online en vivo: mismo instructor, mercado nacional, costo $0</li>
+          <li>Retos de 21 días: precio premium, alto engagement, contenido viral</li>
+          <li>Corporativo via CLIAN: ticket alto, adquisición de grupo</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:3px solid #333;">
+        <h3>⚠️ Riesgos a Monitorear</h3>
+        <ul class="bullet-list">
+          <li>Retención mes 2–3 es la métrica más importante: medir semanalmente</li>
+          <li>No bajar precio antes de construir percepción de valor — el descuento puede devaluar la certificación</li>
+          <li>Latina Tribe podría expandirse a tu zona — monitorear su crecimiento</li>
+          <li>Depender de 1 instructor es riesgo operativo: certificar un segundo en mes 3</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 11 · DECISIONES CLAVE ──────────────────────────────────────────── -->
+<section id="decisiones">
+  <div class="container">
+    <span class="section-label">11 · Decisiones Clave</span>
+    <h2>Qué Necesitamos Definir</h2>
+    <div class="divider"></div>
+
+    <p class="body" style="margin-bottom:2rem;">Estas son las decisiones que el equipo debe tomar antes de arrancar. Cada una impacta la ejecución de las demás.</p>
+
+    <div class="decision-grid">
+      <div class="decision-card">
+        <div class="decision-number">01</div>
+        <p class="decision-question">¿Cuál es el nombre y la identidad visual del estudio?</p>
+        <p class="decision-options">Base de toda la comunicación digital. Define el dominio, redes, y primer impacto de marca. Sin esto, no se puede avanzar en marketing.</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-number">02</div>
+        <p class="decision-question">¿Cuándo es la fecha oficial de apertura?</p>
+        <p class="decision-options">Define el countdown de pre-lanzamiento, la campaña "Fundadoras" y cuándo activar los ads. Mínimo 3 semanas de anticipación para calentamiento digital.</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-number">03</div>
+        <p class="decision-question">¿Qué certificaciones específicas se comunican y cómo?</p>
+        <p class="decision-options">El diferenciador clave requiere nombre concreto de la certificación para ser creíble. Definir qué se dice, en qué formato y en qué canales.</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-number">04</div>
+        <p class="decision-question">¿Cuál es el acuerdo formal con CLIAN?</p>
+        <p class="decision-options">¿Co-marketing? ¿Descuento cruzado? ¿Uso compartido de espacio? El alcance del acuerdo define qué activos podemos activar desde el día 1.</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-number">05</div>
+        <p class="decision-question">¿Qué estilos y horarios se ofrecen en el lanzamiento?</p>
+        <p class="decision-options">Arrancar con demasiados estilos diluye el mensaje. Recomendación: 2 estilos máximo en lanzamiento (Zumba + Reggaetón fitness). Agregar funcional en mes 2.</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-number">06</div>
+        <p class="decision-question">¿Cuál es el presupuesto total de arranque?</p>
+        <p class="decision-options">Marketing lanzamiento: $36K–$60K (3 meses). Acondicionamiento: $91K–$165K si aplica. Software + herramientas: ~$10K. Validar disponibilidad antes de comprometer fechas.</p>
+      </div>
+    </div>
+
+    <div class="highlight-strip" style="margin-top:2rem; font-size:1rem;">
+      Decisiones 1, 2 y 3 son bloqueantes. Sin ellas, nada del plan de marketing puede ejecutarse. Priorizar en la primera reunión.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Brief Estratégico · Estudio de Baile NL · 2026 · Uso Interno Confidencial
+</footer>
+
+</body>
+</html>
